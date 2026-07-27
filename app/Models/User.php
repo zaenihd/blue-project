@@ -32,11 +32,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function store (){
+    public function scoperSearch($query, $search)
+    {
+        return $query->where('name', 'like', '%' . $search . '%')->orWhere('name', 'like', '%' . $search . '%');
+    }
+
+    public function store()
+    {
         return $this->hasOne(Store::class);
     }
 
-    public function buyer(){
+    public function buyer()
+    {
         return $this->hasOne(Buyer::class);
     }
 }
